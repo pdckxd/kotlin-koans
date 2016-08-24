@@ -21,7 +21,19 @@ fun todoTask2(): Nothing = TODO(
     documentation = doc2(),
     references = { collection: Collection<Int> -> task1(collection); collection.joinToString() })
 
+fun <T> Collection<T>.joinToString(prefix: Char = '{', suffix: Char = '}'):String {
+    val sb = StringBuilder()
+    sb.append(prefix)
+    for((index, item) in this.withIndex()) {
+        sb.append(item.toString())
+        if(index < this.size - 1) {
+            sb.append(", ")
+        }
+    }
+    sb.append(suffix)
+    return sb.toString()
+}
+
 fun task2(collection: Collection<Int>): String {
-    todoTask2()
     return collection.joinToString()
 }
